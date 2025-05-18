@@ -1,6 +1,4 @@
-// Create and handle mobile navigation
 document.addEventListener('DOMContentLoaded', () => {
-    // Create mobile nav toggle
     const mobileToggle = document.createElement('button');
     mobileToggle.className = 'mobile-nav-toggle';
     mobileToggle.setAttribute('aria-label', 'Toggle navigation');
@@ -8,12 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileToggle.innerHTML = '☰';
     document.body.insertBefore(mobileToggle, document.body.firstChild);
     
-    // Force display check on mobile
     if (window.innerWidth <= 768) {
         mobileToggle.style.display = 'flex';
     }
     
-    // Create navigation
     const nav = document.createElement('nav');
     const navList = document.createElement('ul');
     navList.className = 'nav-main';

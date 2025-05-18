@@ -1087,10 +1087,6 @@ section h3 {
         font-size: 3.5rem;
     }
 
-    canvas {
-        max-width: 300px;
-    }
-
     .work-item {
         padding: var(--spacing-small);
     }
