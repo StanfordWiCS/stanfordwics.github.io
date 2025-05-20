@@ -162,7 +162,7 @@ nav li.active a {
 }
 
 .description-content p {
-    text-align: left;
+    text-align: center;
     line-height: 1.6;
     font-size: var(--text-small);
     margin: 0;
