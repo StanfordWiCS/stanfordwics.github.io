@@ -138,14 +138,39 @@ nav li.active a {
     }
 }
 
+@media (max-width: 1200px) {
+    .canvas-container {
+        flex-direction: column;
+        gap: var(--spacing-medium);
+        justify-content: center;
+        align-items: center;
+    }
+
+    canvas {
+        margin-left: 0;
+    }
+
+    .title-content {
+        order: 2;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .title-content h1 {
+        text-align: center;
+    }
+}
+
 .title-content {
     flex: 1;
     max-width: 600px;
-    padding: 3rem 0;
+    padding: 1rem 0;
+    text-align: center;
 }
 
 .title-content h1 {
-    text-align: left;
+    text-align: center;
     margin-bottom: 0;
     font-size: 5rem;
     line-height: 1.2;
@@ -1030,7 +1055,7 @@ section h3 {
 
     .description-content p {
         text-align: center;
-        max-width: 20rem;
+        max-width: calc(100% - 2rem);
     }
 
     .work-grid {

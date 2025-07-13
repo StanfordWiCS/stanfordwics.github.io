@@ -118,6 +118,21 @@ function initScene(index, modelFile) {
     const control = new OrbitControls(camera, asciiEffect.domElement);
     control.enableDamping = true;
     control.dampingFactor = 0.05;
+    control.enableZoom = false; // Disable mouse wheel zoom
+
+    // Add double-click zoom functionality
+    asciiEffect.domElement.addEventListener('dblclick', (event) => {
+        event.preventDefault();
+        
+        const currentDistance = camera.position.distanceTo(control.target);
+        if (currentDistance > 2.5) {
+            camera.position.lerp(control.target, 0.15);
+        } else {
+            camera.position.set(0, 0, 3);
+        }
+        
+        camera.lookAt(control.target);
+    });
 
     return { scene, camera, renderer, control, asciiEffect };
 }
