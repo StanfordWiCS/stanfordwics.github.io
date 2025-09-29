@@ -214,6 +214,25 @@ h1, h2, h3, p {
     text-align: center;
 }
 
+.sponsor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 2rem;
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    justify-items: center;
+    align-items: center;
+}
+
+.sponsor-item img {
+    max-width: 100%;
+    max-height: 80px;
+    object-fit: contain;
+    display: block;
+}
+
+
 /* About page */
 .about-section {
     margin: 40px 0;
@@ -413,75 +432,6 @@ section h3 {
     position: relative;
 }
 
-.marquee--13 {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    position: relative;
-    overflow: hidden;
-}
-
-.marquee__content {
-    display: flex;
-    align-items: center;
-    animation: scroll 23s linear infinite;
-    padding: 0 20px;
-    height: 100%;
-}
-
-.marquee__item {
-    flex-shrink: 0;
-    padding: 0 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-.marquee__item img {
-    height: 60px;
-    width: auto;
-    transition: transform 0.3s ease;
-    object-fit: contain;
-}
-
-@media (max-width: 768px) {
-    .marquee__content {
-        animation: scroll 15s linear infinite;
-    }
-
-    .sponsor-slider {
-        height: 100px;
-    }
-
-    .marquee__item {
-        padding: 0 5px;
-    }
-
-    .marquee__item img {
-        height: 50px;
-        object-fit: contain;
-    }
-}
-
-@media (max-width: 480px) {
-    .marquee__content {
-        animation: scroll 15s linear infinite;
-    }
-
-    .sponsor-slider {
-        height: 80px;
-    }
-
-    .marquee__item {
-        padding: 0 3px;
-    }
-
-    .marquee__item img {
-        height: 40px;
-    }
-}
-
 @keyframes scroll {
     0% {
         transform: translateX(0);
@@ -490,12 +440,6 @@ section h3 {
         transform: translateX(-100%);
     }
 }
-
-/* Pause animation on hover */
-.sponsor-slider:hover .marquee__content {
-    animation-play-state: paused;
-}
-
 
 /* Responsive adjustments */
 @media (max-width: 900px) {
@@ -1067,15 +1011,6 @@ section h3 {
         padding: 0;
     }
 
-    .marquee__item {
-        min-width: 120px;
-        padding: 0.5rem;
-    }
-
-    .marquee__item img {
-        max-width: 100px;
-    }
-
     .program-card {
         grid-template-columns: 1fr;
         padding: var(--spacing-medium);
@@ -1113,18 +1048,6 @@ section h3 {
 
     .work-item {
         padding: var(--spacing-small);
-    }
-
-    .marquee__item {
-        padding: 0 3px;
-    }
-
-    .marquee__item img {
-        height: 40px;
-    }
-
-    .marquee__content {
-        animation: scroll 15s linear infinite;
     }
 
     .program-card {
