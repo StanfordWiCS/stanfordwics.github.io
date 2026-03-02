@@ -36,6 +36,22 @@ iconModels.forEach((model, index) => {
 
 function initScene(index, modelFile) {
     const scene = new THREE.Scene();
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 512;
+    const context = canvas.getContext('2d');
+
+    const gradient = context.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, '#ec4899');
+    gradient.addColorStop(1, '#b8860b');
+
+    context.fillStyle = gradient;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    const texture = new THREE.CanvasTexture(canvas);
+    scene.background = texture;
+    
     const camera = new THREE.PerspectiveCamera(
         75,
         canvasSizes[index].width / canvasSizes[index].height,
@@ -49,24 +65,24 @@ function initScene(index, modelFile) {
         canvas: canvasElement
     });
     renderer.setSize(canvasSizes[index].width, canvasSizes[index].height);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // Create ASCII effect
-    const asciiEffect = new AsciiEffect(renderer, ' .,:;i1tfLCG08●○', { 
+    const asciiEffect = new AsciiEffect(renderer, ' .:-=+*#%@█▓▒░', { // .,:;i1tfLCG08○
         invert: false,
-        resolution: 0.15,
+        resolution: 0.22,
         scale: 1,
         color: true,
-        backgroundColor: '#000000',
+        backgroundColor: 'white',
     });
     asciiEffect.setSize(canvasSizes[index].width, canvasSizes[index].height);
-    asciiEffect.domElement.style.backgroundColor = 'black';
+    asciiEffect.domElement.className = 'canvas-embed';
+    asciiEffect.domElement.style.backgroundColor = 'transparent';
+    asciiEffect.domElement.style.color = 'white';
     asciiEffect.domElement.style.fontFamily = 'IMWritingMono Nerd Font, monospace';
     asciiEffect.domElement.style.fontSize = '6px';
     asciiEffect.domElement.style.lineHeight = '6px';
     asciiEffect.domElement.style.letterSpacing = '0px';
     
-    // Replace the canvas with ASCII effect element
     canvasElement.parentNode.replaceChild(asciiEffect.domElement, canvasElement);
 
     const ambientLight = new THREE.AmbientLight(0xCC9900, 2);  
@@ -83,9 +99,9 @@ function initScene(index, modelFile) {
         model.traverse((child) => {
             if (child.isMesh) {
                 child.material = new THREE.MeshPhongMaterial({
-                    color: 0xFF4400,  
-                    emissive: 0xFF5500,   
-                    specular: 0xFFD700,  
+                    color: 0x010000,
+                    emissive: 0x333333,
+                    specular: 0x333333,
                     shininess: 35
                 });
             }
@@ -138,8 +154,9 @@ function initScene(index, modelFile) {
 }
 
 function animate() {
+    if (document.hidden) return;
     requestAnimationFrame(animate);
-    
+
     scenes.forEach((scene, index) => {
         const camera = cameras[index];
         const control = controls[index];
@@ -153,8 +170,7 @@ function animate() {
             const bounceState = bounceStates[index];
             bounceState.y = Math.sin(Date.now() * bounceState.velocity) * bounceState.amplitude;
             draggableObjects[index].position.y = iconPositions[index].y + bounceState.y;
-            
-            // Apply oscillating rotation
+
             const rotationState = rotationStates[index];
             draggableObjects[index].rotation.y = Math.sin(Date.now() * rotationState.speed) * rotationState.amplitude;
         }
@@ -165,13 +181,39 @@ function animate() {
 
 animate();
 
-window.addEventListener('resize', () => {
+document.addEventListener('visibilitychange', () => {
+    document.body.classList.toggle('page-hidden', document.hidden);
+    if (!document.hidden) animate();
+});
+if (document.hidden) document.body.classList.add('page-hidden');
+
+function getCanvasSize(index) {
+    const base = canvasSizes[index];
+    const w = window.innerWidth;
+    if (w <= 480) {
+        const size = Math.min(300, w - 32);
+        return { width: size, height: size };
+    }
+    if (w <= 768) {
+        const size = Math.min(400, w - 32);
+        return { width: size, height: size };
+    }
+    return base;
+}
+
+function updateCanvasSizes() {
     scenes.forEach((scene, index) => {
         const camera = cameras[index];
+        const renderer = renderers[index];
         const asciiEffect = asciiEffects[index];
+        const size = getCanvasSize(index);
         
-        camera.aspect = canvasSizes[index].width / canvasSizes[index].height;
+        renderer.setSize(size.width, size.height);
+        camera.aspect = size.width / size.height;
         camera.updateProjectionMatrix();
-        asciiEffect.setSize(canvasSizes[index].width, canvasSizes[index].height);
+        asciiEffect.setSize(size.width, size.height);
     });
-});
+}
+
+window.addEventListener('resize', updateCanvasSizes);
+updateCanvasSizes();

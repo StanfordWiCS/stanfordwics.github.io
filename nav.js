@@ -1,85 +1,164 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const mobileToggle = document.createElement('button');
-    mobileToggle.className = 'mobile-nav-toggle';
-    mobileToggle.setAttribute('aria-label', 'Toggle navigation');
-    mobileToggle.setAttribute('type', 'button');
-    mobileToggle.innerHTML = '☰';
-    document.body.insertBefore(mobileToggle, document.body.firstChild);
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', function() {
     
-    if (window.innerWidth <= 768) {
-        mobileToggle.style.display = 'flex';
+    // ==========================================
+    // MOBILE NAV TOGGLE
+    // ==========================================
+    const mobileToggle = document.querySelector('.mobile-nav-toggle');
+    const nav = document.querySelector('nav');
+    
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', function() {
+            nav.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+            mobileToggle.textContent = nav.classList.contains('active') ? '✕' : '☰';
+        });
     }
     
-    const nav = document.createElement('nav');
-    const navList = document.createElement('ul');
-    navList.className = 'nav-main';
-    
-    const navItems = [
-        { text: 'home', href: 'index.html' },
-        { text: 'team', href: 'team.html' },
-        { text: 'events', href: 'events.html' },
-        { text: 'get involved', href: 'get-involved.html' }
-    ];
-    
-    navItems.forEach(item => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = item.href;
-        a.textContent = item.text;
-        if (window.location.pathname.endsWith(item.href)) {
-            li.classList.add('active');
-        }
-        li.appendChild(a);
-        navList.appendChild(li);
+    // Close mobile nav when clicking a link
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                nav.classList.remove('active');
+                if (mobileToggle) {
+                    mobileToggle.classList.remove('active');
+                    mobileToggle.textContent = '☰';
+                }
+            }
+        });
     });
     
-    nav.appendChild(navList);
+    // ==========================================
+    // SCROLL ANIMATIONS
+    // ==========================================
+    const observerOptions = {
+        root: null,
+        rootMargin: '80px 0px',
+        threshold: 0.05
+    };
     
-    const socialDiv = document.createElement('div');
-    socialDiv.className = 'nav-social';
-    const socialList = document.createElement('ul');
-    const socialLinks = [
-        { text: 'instagram', href: 'https://instagram.com/stanfordwics' },
-        { text: 'linkedin', href: 'https://linkedin.com/company/stanfordwics' }
-    ];
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            } else {
+                if (!entry.target.classList.contains('reveal-once')) {
+                    entry.target.classList.remove('revealed');
+                }
+            }
+        });
+    }, observerOptions);
     
-    socialLinks.forEach(link => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = link.href;
-        a.textContent = link.text;
-        a.target = '_blank';
-        li.appendChild(a);
-        socialList.appendChild(li);
+    // Observe all elements with scroll-reveal classes
+    const scrollRevealElements = document.querySelectorAll(
+        '.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale'
+    );
+    
+    scrollRevealElements.forEach(element => {
+        observer.observe(element);
     });
     
-    socialDiv.appendChild(socialList);
-    nav.appendChild(socialDiv);
+    // ==========================================
+    // ACTIVE NAV LINK HIGHLIGHTING
+    // ==========================================
+    const sections = document.querySelectorAll('.page-section');
+    const navItems = document.querySelectorAll('nav ul li');
     
-    document.body.insertBefore(nav, document.body.firstChild);
-
-    mobileToggle.addEventListener('click', () => {
-        nav.classList.toggle('active');
-        mobileToggle.classList.toggle('active');
-        mobileToggle.setAttribute('aria-expanded', 
-            nav.classList.contains('active').toString());
+    function updateActiveNavLink() {
+        let currentSection = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            // Check if section is in viewport
+            if (window.pageYOffset >= sectionTop - 200) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+        
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            const link = item.querySelector('a');
+            if (link && link.getAttribute('href') === `#${currentSection}`) {
+                item.classList.add('active');
+            }
+        });
+    }
+    
+    // Update on scroll
+    window.addEventListener('scroll', updateActiveNavLink);
+    
+    // Update on page load
+    updateActiveNavLink();
+    
+    // ==========================================
+    // SMOOTH SCROLLING FOR ANCHOR LINKS
+    // ==========================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Only prevent default for internal navigation links
+            if (href !== '#' && document.querySelector(href)) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                
+                if (target) {
+                    const offsetTop = target.offsetTop;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
     });
-
-    document.addEventListener('click', (e) => {
-        if (nav.classList.contains('active') && 
-            !nav.contains(e.target) && 
-            !mobileToggle.contains(e.target)) {
-            nav.classList.remove('active');
-            mobileToggle.classList.remove('active');
-            mobileToggle.setAttribute('aria-expanded', 'false');
-        }
+    
+    // ==========================================
+    // STAGGER ANIMATIONS FOR MULTIPLE ELEMENTS
+    // ==========================================
+    function addStaggerDelay() {
+        // Add stagger delay to work items
+        const workItems = document.querySelectorAll('.work-item');
+        workItems.forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.1}s`;
+        });
+        
+        // Add stagger delay to team sections
+        const teamSections = document.querySelectorAll('.team-section');
+        teamSections.forEach((section, index) => {
+            section.style.transitionDelay = `${index * 0.05}s`;
+        });
+        
+        // Add stagger delay to program cards
+        const programCards = document.querySelectorAll('.program-card');
+        programCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.15}s`;
+        });
+        
+        // Add stagger delay to sponsor items
+        const sponsorItems = document.querySelectorAll('.sponsor-item');
+        sponsorItems.forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.03}s`;
+        });
+    }
+    
+    addStaggerDelay();
+    
+    // ==========================================
+    // PARALLAX EFFECT FOR FLOATING SHAPES (Optional)
+    // ==========================================
+    const floatingShapes = document.querySelectorAll('.floating-shape');
+    
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        
+        floatingShapes.forEach((shape, index) => {
+            const speed = 0.1 + (index * 0.02);
+            const yPos = -(scrolled * speed);
+            shape.style.transform = `translateY(${yPos}px)`;
+        });
     });
-
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768 && nav.classList.contains('active')) {
-            nav.classList.remove('active');
-            mobileToggle.classList.remove('active');
-            mobileToggle.setAttribute('aria-expanded', 'false');
-        }
-    });
-}); 
+});
