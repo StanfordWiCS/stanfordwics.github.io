@@ -6,7 +6,6 @@
     <title>stanfordwics</title>
     <link rel="icon" type="image/png" href="photos/wicslogo.png">
     <link rel="stylesheet" href="styles.css">
-    <script src="nav.js"></script>
     <meta property="og:title" content="Stanford Women in Computer Science">
     <meta property="og:description" content="The premier student organization at Stanford University dedicated to supporting women in computer science and technology.">
     <meta property="og:image" content="https://stanfordwomenincomputerscience.com/photos/wicslogo.png">
@@ -18,89 +17,203 @@
     <meta name="twitter:image" content="https://stanfordwomenincomputerscience.com/photos/wicslogo.png">
 </head>
 <body>
+    <button class="mobile-nav-toggle" aria-label="Toggle navigation" type="button">☰</button>
+
+    <nav>
+        <ul class="nav-main">
+            <li class="active"><a href="#home">home</a></li>
+            <li><a href="#events">events</a></li>
+            <li><a href="#get-involved">get involved</a></li>
+            <li><a href="#team">team</a></li>
+        </ul>
+        <div class="nav-social">
+            <ul>
+                <li><a href="https://instagram.com/stanfordwics" target="_blank" rel="noopener noreferrer">instagram</a></li>
+                <li><a href="https://linkedin.com/company/stanfordwics" target="_blank" rel="noopener noreferrer">linkedin</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="main-content">
-    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.150.1/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.150.1/examples/jsm/"
-            }
-        }
-    </script>
-    <script type="module" src="main.js"></script>
+        <!-- HOME -->
+        <section id="home" class="page-section">
+            <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+            <script type="importmap">
+                {
+                    "imports": {
+                        "three": "https://unpkg.com/three@0.150.1/build/three.module.js",
+                        "three/addons/": "https://unpkg.com/three@0.150.1/examples/jsm/"
+                    }
+                }
+            </script>
+            <script type="module" src="main.js"></script>
 
-    <div class="canvas-container">
-        <canvas id="canvas1"></canvas>
-        <div class="title-content">
-            <h1>stanford women in computer science</h1>
-        </div>
+            <div class="canvas-container">
+                <canvas id="canvas1"></canvas>
+                <div class="title-content">
+                    <h1>stanford women in computer science</h1>
+                </div>
+            </div>
+
+            <div class="description-content scroll-reveal">
+                <p>The premier student organization at Stanford University dedicated to supporting women in computer science and technology. We build strong communities and professional networks, raise awareness about issues women face in the field and empower women's academic and career success. Become a general member <a href="https://docs.google.com/forms/d/e/1FAIpQLSfYf3iTc78c0F6u4xGV7hVD256l840FfiqFFlYy0maw35-f9A/viewform">here</a>.</p>
+            </div>
+
+            <section class="our-work scroll-reveal">
+                <div class="work-grid">
+                    <div class="work-item scroll-reveal-left">
+                        <h3>Events</h3>
+                        <p>Throughout the school year, WiCS subteams plan a variety of <a href="#events">events</a> open to all Stanford students, including coffee chats, panels, workshops, dinners, study nights and more.</p>
+                    </div>
+                    <div class="work-item scroll-reveal-right">
+                        <h3>Get involved</h3>
+                        <p>Subscribe to our <a href="https://mailman.stanford.edu/mailman/listinfo/wics_announce">mailing list</a>, <a href="https://calendar.google.com/calendar/u/0?cid=MTdhZWY5MDRkYWNjMWVkNWQzOTM3MGE1NTdmNWU4OTg2MDYxMWI0MTIwYjk1OTE3YmU2MTgyODlkNTVhMjhiY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t">Google Calendar</a> and <a href="https://instagram.com/stanfordwics">Instagram</a> to stay in the loop, or check out our Fellows and Outreach <a href="#get-involved">programs</a>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="our-sponsors scroll-reveal-scale reveal-once">
+                <h2>our sponsors</h2>
+                <div class="sponsor-grid">
+                    <div class="sponsor-item"><img src="sponsors/bloomberg.png" alt="Bloomberg"></div>
+                    <div class="sponsor-item"><img src="sponsors/boeing.png" alt="Boeing"></div>
+                    <div class="sponsor-item"><img src="sponsors/citadel.png" alt="Citadel"></div>
+                    <div class="sponsor-item"><img src="sponsors/evergreen.png" alt="Evergreen Statistical Trading" style="width: 120%; margin: 0 auto;"></div>
+                    <div class="sponsor-item"><img src="sponsors/shaw.png" alt="The D.E. Shaw Group"></div>
+                    <div class="sponsor-item"><img src="sponsors/glean.png" alt="Glean" style="width: 50%; margin: 0 auto;"></div>
+                    <div class="sponsor-item"><img src="sponsors/google.png" alt="Google"></div>
+                    <div class="sponsor-item"><img src="sponsors/janestreet.png" alt="Jane Street" style="width: 120%; margin: 0 auto;"></div>
+                    <div class="sponsor-item"><img src="sponsors/jump.png" alt="Jump Trading" style="width: 80%; margin: 0 auto;"></div>
+                    <div class="sponsor-item"><img src="sponsors/openai.png" alt="OpenAI"></div>
+                    <div class="sponsor-item"><img src="sponsors/quadrature.webp" alt="Quadrature Capital"></div>
+                    <div class="sponsor-item"><img src="sponsors/stripe.png" alt="Stripe" style="width: 40%; margin: 0 auto;"></div>
+                    <div class="sponsor-item"><img src="sponsors/visa.png" alt="Visa Inc."></div>
+                </div>
+                <div class="sponsor-link">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceQaC-SqLdNy5zyzCD0A5NIHjFRJzeH2WPB-0Rfaq5upRb1A/viewform">want to be a sponsor? →</a>
+                </div>
+            </section>
+        </section>
+
+        <!-- EVENTS -->
+        <section id="events" class="page-section">
+            <h1 class="techno-font scroll-reveal">events</h1>
+            <section class="calendar-embed scroll-reveal-scale">
+                <iframe src="https://calendar.google.com/calendar/embed?src=7a8da71d02f37b6998157a1ad78419f5b0224d01738261f2f31fac82155502d5%40group.calendar.google.com&ctz=America%2FLos_Angeles&bgcolor=%000000&color=%ffffffff" style="border-width:0" width="100%" height="600" frameborder="0" scrolling="no" title="WiCS calendar"></iframe>
+            </section>
+        </section>
+
+        <!-- GET INVOLVED -->
+        <section id="get-involved" class="page-section">
+            <h1 class="techno-font scroll-reveal">get involved</h1>
+
+            <ul class="resource-links scroll-reveal">
+                <li><a href="https://mailman.stanford.edu/mailman/listinfo/wics_announce" target="_blank" rel="noopener noreferrer">mailing list</a></li>
+                <li><a href="https://calendar.google.com/calendar/u/0?cid=MTdhZWY5MDRkYWNjMWVkNWQzOTM3MGE1NTdmNWU4OTg2MDYxMWI0MTIwYjk1OTE3YmU2MTgyODlkNTVhMjhiY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" rel="noopener noreferrer">google calendar</a></li>
+                <li><a href="https://instagram.com/stanfordwics" target="_blank" rel="noopener noreferrer">instagram</a></li>
+                <li><a href="https://stanfordwow.substack.com/" target="_blank" rel="noopener noreferrer">substack</a></li>
+                <li><a href="https://stanfordwics.medium.com/" target="_blank" rel="noopener noreferrer">medium</a></li>
+                <li><a href="https://github.com/stanfordwics" target="_blank" rel="noopener noreferrer">github</a></li>
+                <li><a href="https://linkedin.com/company/stanfordwics" target="_blank" rel="noopener noreferrer">linkedin</a></li>
+            </ul>
+
+            <section class="programs-container">
+                <div class="program-card scroll-reveal-scale">
+                    <div class="program-image" style="background-image: url('photos/fellows.png')"></div>
+                    <div class="program-content">
+                        <h2>fellows</h2>
+                        <p>The Fellows program is a year-long technical program comprising speaker series, workshops and group projects. Join a supportive and welcoming community, meet other students interested in tech, make friends at social events, and learn from upperclassmen.</p>
+                        <p>This program is open to all Stanford students (frosh welcome!) and no prior coding experience is required, but CS 106A is recommended. Applications open every fall. <a href="#" style="text-decoration: underline;">Details here</a>.</p>
+                    </div>
+                </div>
+
+                <div class="program-card scroll-reveal-scale">
+                    <div class="program-image" style="background-image: url('photos/outreach.png')"></div>
+                    <div class="program-content">
+                        <h2>outreach</h2>
+                        <p>The outreach team runs educational programs in partnership with local non-profits and public schools serving low-income, historically underrepresented high schoolers who are interested in tech. The outreac team is always looking for volunteers to support this program in roles from curriculum design to mentoring.</p>
+                        <p>As a volunteer, you'll work to ensure instructional activities are well-designed and effective and develop long-term relationships with the students you'll be mentoring in the program. <a href="#" style="text-decoration: underline;">Details here</a>.</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- TEAM -->
+        <section id="team" class="page-section">
+            <h1 class="techno-font scroll-reveal">WiCS leadership</h1>
+
+            <div class="team-sections-container">
+                <div class="team-column">
+                    <div class="team-section team-section-leaders scroll-reveal-left">
+                        <div class="team-grid">
+                            <div class="team-member leader"><h3>Anagha Ramaswamy</h3><p>Co-President</p></div>
+                            <div class="team-member leader"><h3>Dora Gan</h3><p>Co-President</p></div>
+                            <div class="team-member leader"><h3>Spurti Nimballi</h3><p>VPO</p></div>
+                        </div>
+                    </div>
+
+                    <div class="team-section scroll-reveal-left">
+                        <h2 class="section-title">Industry</h2>
+                        <div class="team-grid">
+                            <div class="team-member"><h3>Sammy Shankar</h3><p>Exec</p></div>
+                            <div class="team-member"><h3>Grace Wang</h3></div>
+                            <div class="team-member"><h3>Olivia Sze</h3></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-column">
+                    <div class="team-section scroll-reveal-left">
+                        <h2 class="section-title">Faculty &amp; Research</h2>
+                        <div class="team-grid">
+                            <div class="team-member"><h3>Angelina Kim</h3><p>Exec</p></div>
+                            <div class="team-member"><h3>Ananya Tadepalli</h3></div>
+                            <div class="team-member"><h3>Emily Yang</h3></div>
+                        </div>
+                    </div>
+
+                    <div class="team-section scroll-reveal-left">
+                        <h2 class="section-title">Community</h2>
+                        <div class="team-grid">
+                            <div class="team-member"><h3>Grace Yan</h3><p>Exec</p></div>
+                            <div class="team-member"><h3>Sreya Jampana</h3></div>
+                            <div class="team-member"><h3>Aadya Chaudhary</h3></div>
+                        </div>
+                    </div>
+
+                    <div class="team-section scroll-reveal-left">
+                        <h2 class="section-title">Outreach</h2>
+                        <div class="team-grid">
+                            <div class="team-member"><h3>Indu Gadiraju</h3><p>Exec</p></div>
+                            <div class="team-member"><h3>Emmie Kao</h3></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-column">
+                    <div class="team-section scroll-reveal-right">
+                        <h2 class="section-title">Marketing &amp; Comms</h2>
+                        <div class="team-grid">
+                            <div class="team-member"><h3>Angela Yang</h3><p>Exec</p></div>
+                            <div class="team-member"><h3>Hannah Cheng</h3></div>
+                        </div>
+                    </div>
+
+                    <div class="team-section scroll-reveal-right">
+                        <h2 class="section-title">Flagships</h2>
+                        <div class="team-grid">
+                            <div class="team-member"><h3>Anna Wu</h3><p>Exec</p></div>
+                            <div class="team-member"><h3>Chelsea Wei</h3><p>Exec</p></div>
+                            <div class="team-member"><h3>Nishka Sharma</h3></div>
+                            <div class="team-member"><h3>Calista Woo</h3></div>
+                            <div class="team-member"><h3>Maryam Solaiman</h3></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-    <div class="description-content">
-        <p>The premier student organization at Stanford University dedicated to supporting women in computer science and technology. We build strong communities and professional networks, raise awareness about issues women face in the field and empower women's academic and career success. Become a general member <a href="https://docs.google.com/forms/d/e/1FAIpQLSfYf3iTc78c0F6u4xGV7hVD256l840FfiqFFlYy0maw35-f9A/viewform">here</a>.</p>
-    </div>
 
-    <section class="our-work">
-        <div class="work-grid">
-            <div class="work-item">
-                <h3>Events</h3>
-                <p>Throughout the school year, WiCS subteams plan a variety of <a href="events.html">events</a> open to all Stanford students, including coffee chats, panels, workshops, dinners, study nights and more.</p>
-            </div>
-            <div class="work-item">
-                <h3>Get involved</h3>
-                <p>Subscribe to our <a href="https://mailman.stanford.edu/mailman/listinfo/wics_announce">mailing list</a>, <a href="https://calendar.google.com/calendar/u/0?cid=MTdhZWY5MDRkYWNjMWVkNWQzOTM3MGE1NTdmNWU4OTg2MDYxMWI0MTIwYjk1OTE3YmU2MTgyODlkNTVhMjhiY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t">Google Calendar</a> and <a href="https://instagram.com/stanfordwics">Instagram</a> to stay in the loop, or check out our board internship, Fellows and Outreach <a href="get-involved.html">programs</a>.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="our-sponsors">
-        <h2>our sponsors</h2>
-        <div class="sponsor-grid">
-            <div class="sponsor-item">
-                <img src="sponsors/bloomberg.png" alt="Bloomberg">
-            </div>
-            <div class="sponsor-item">
-                <img src="sponsors/boeing.png" alt="Boeing">
-            </div>
-            <div class="sponsor-item">
-                <img src="sponsors/citadel.png" alt="Citadel">
-            </div>
-            <div class="sponsor-item">
-                <img src="sponsors/evergreen.png" alt="Evergreen Statistical Trading" style="width: 120%; margin: 0 auto;">
-            </div>
-            <div class="sponsor-item">
-                <img src="sponsors/shaw.png" alt="The D.E. Shaw Group">
-            </div>
-            <div class="sponsor-item">
-                <img src="sponsors/glean.png" alt="Glean" style="width: 50%; margin: 0 auto;">
-            </div>
-            <div class="sponsor-item">
-                <img src="sponsors/google.png" alt="Google">
-            </div>
-            <div class="sponsor-item">
-                <img src="sponsors/janestreet.png" alt="Jane Street" style="width: 120%; margin: 0 auto;">
-            </div>
-            <div class="sponsor-item">
-                <img src="sponsors/jump.png" alt="Jump Trading" style="width: 80%; margin: 0 auto;">
-            </div>
-            <div class="sponsor-item">
-                <img src="sponsors/openai.png" alt="OpenAI">
-            </div>
-            <div class="sponsor-item">
-                <img src="sponsors/quadrature.webp" alt="Quadrature Capital">
-            </div>
-            <div class="sponsor-item">
-                <img src="sponsors/stripe.png" alt="Stripe" style="width: 40%; margin: 0 auto;">
-            </div>
-            <div class="sponsor-item">
-                <img src="sponsors/visa.png" alt="Visa Inc.">
-            </div>
-        </div>
-        <div class="sponsor-link">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSceQaC-SqLdNy5zyzCD0A5NIHjFRJzeH2WPB-0Rfaq5upRb1A/viewform">want to be a sponsor? →</a>
-        </div>
-    </section>
-
-    </div>
+    <script src="nav.js"></script>
 </body>
 </html>

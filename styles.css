@@ -46,6 +46,10 @@
     --spacing-xl: 4rem;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     display: flex;
@@ -69,6 +73,7 @@ nav {
     flex-direction: column;
     align-items: center;
     border-right: 1px solid var(--border-medium);
+    z-index: 100;
 }
 
 nav ul {
@@ -108,10 +113,73 @@ nav li.active a {
     margin-left: 200px;
     width: calc(100% - 200px);
     padding: var(--spacing-medium);
+    padding-bottom: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+    min-height: 100vh;
+}
+
+.page-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-large) 0;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.page-section:first-child {
+    padding-top: 0;
+}
+
+/* Scroll reveal animations */
+.scroll-reveal,
+.scroll-reveal-left,
+.scroll-reveal-right,
+.scroll-reveal-scale {
+    opacity: 0;
+    filter: blur(0.1rem);
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out, filter 0.25s ease-out;
+}
+
+.scroll-reveal {
+    transform: translateY(24px);
+}
+
+.scroll-reveal-left {
+    transform: translateX(-40px);
+}
+
+.scroll-reveal-right {
+    transform: translateX(40px);
+}
+
+.scroll-reveal-scale {
+    transform: scale(0.96);
+}
+
+.scroll-reveal.revealed,
+.scroll-reveal-left.revealed,
+.scroll-reveal-right.revealed,
+.scroll-reveal-scale.revealed {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) translateX(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-reveal,
+    .scroll-reveal-left,
+    .scroll-reveal-right,
+    .scroll-reveal-scale {
+        opacity: 1;
+        filter: none;
+        transform: none;
+        transition: none;
+    }
 }
 
 .canvas-container {
@@ -470,12 +538,12 @@ section h3 {
 /* Team page styles */
 .team-sections-container {
     display: flex;
-    gap: 0rem;
+    gap: 2.5rem;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .team-column {
@@ -483,7 +551,8 @@ section h3 {
     display: flex;
     flex-direction: column;
     gap: 0rem;
-    margin-right: 3rem;
+    margin-right: 0;
+    min-width: 0;
 }
 
 .team-section {
@@ -505,7 +574,7 @@ section h3 {
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: 1fr;
     gap: 0rem;
     max-width: 100%;
 }
@@ -523,16 +592,26 @@ section h3 {
     white-space: nowrap;
 }
 
+.team-member.leader h3 {
+    font-size: 1.15rem;
+}
+
+.team-section-leaders {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
 .team-member p {
     font-size: var(--text-small);
     margin: 0;
+    margin-left: 0.75rem;
     opacity: 0.7;
     font-style: italic;
     display: inline-block;
 }
 
 .team-member p::before {
-    content: "  ";
+    content: none;
 }
 
 .techno-font {
@@ -965,6 +1044,19 @@ section h3 {
         margin-left: 0;
         width: 100%;
         padding: var(--spacing-small);
+    }
+
+    .page-section {
+        padding: var(--spacing-medium) 0;
+    }
+
+    .page-section:first-child {
+        padding-top: var(--spacing-small);
+    }
+
+    .scroll-reveal-left,
+    .scroll-reveal-right {
+        transform: translateY(20px);
     }
 
     .canvas-container {
