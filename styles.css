@@ -541,7 +541,8 @@ section h3 {
 /* Team page styles */
 .team-sections-container {
     display: flex;
-    gap: 2.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
@@ -549,19 +550,24 @@ section h3 {
     padding-right: 2rem;
 }
 
+.team-columns {
+    display: flex;
+    gap: 2.5rem;
+    width: 100%;
+}
+
 .team-column {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0rem;
+    gap: 0;
     margin-right: 0;
     min-width: 0;
 }
 
 .team-section {
     width: 100%;
-    margin-bottom: 0rem;
-    
+    margin-bottom: 0;
 }
 
 .section-title {
@@ -578,13 +584,13 @@ section h3 {
 .team-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0rem;
+    gap: 0;
     max-width: 100%;
 }
 
 .team-member {
     text-align: left;
-    padding: 0rem;
+    padding: 0;
 }
 
 .team-member h3 {
@@ -600,8 +606,24 @@ section h3 {
 }
 
 .team-section-leaders {
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.leaders-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem 2rem;
+    width: auto;
+    max-width: 100%;
+}
+
+.leaders-grid .team-member {
+    text-align: center;
 }
 
 .team-member p {
@@ -624,20 +646,132 @@ section h3 {
     color: var(--color-gold);
 }
 
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    margin-bottom: var(--spacing-large);
+}
+
+.section-header .techno-font {
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.section-icon-wrap {
+    flex-shrink: 0;
+    width: 160px;
+    height: 160px;
+    margin-left: -0.75rem;
+    margin-right: 0;
+    /* Nudge down so the icon center lines up with the header text */
+    transform: translateY(0.55rem);
+}
+
+.section-icon-wrap .ascii-canvas,
+#ascii-canvas2,
+#ascii-canvas3,
+#ascii-canvas4 {
+    width: 160px !important;
+    height: 160px !important;
+    overflow: hidden;
+    cursor: grab;
+}
+
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.15rem;
+        text-align: center;
+    }
+
+    .section-header .techno-font {
+        text-align: center;
+    }
+
+    .section-icon-wrap {
+        width: 140px;
+        height: 140px;
+        margin-left: 0;
+        margin-right: 0;
+        transform: none;
+    }
+
+    .section-icon-wrap .ascii-canvas,
+    #ascii-canvas2,
+    #ascii-canvas3,
+    #ascii-canvas4 {
+        width: 140px !important;
+        height: 140px !important;
+    }
+}
+
 @media (max-width: 1200px) {
     .team-sections-container {
-        flex-direction: column;
         padding-left: 1rem;
+        padding-right: 1rem;
+        gap: 0;
     }
-    
+
+    .team-columns {
+        flex-direction: column;
+        gap: 0;
+    }
+
     .team-section {
-        margin-bottom: 0rem;
+        margin-bottom: 0;
+    }
+
+    .team-section .section-title {
+        margin-top: 1rem;
+        margin-bottom: 0.35rem;
+    }
+
+    .team-section-leaders {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
     }
 }
 
 @media (max-width: 768px) {
+    .team-sections-container {
+        padding-left: 0;
+        padding-right: 0;
+        gap: 0;
+    }
+
+    .team-columns {
+        gap: 0;
+    }
+
+    .team-column {
+        gap: 0;
+    }
+
+    .team-section {
+        margin: 0;
+        padding: 0;
+    }
+
+    .team-section .section-title {
+        margin-top: 0.75rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .team-section-leaders {
+        margin: 0 0 0.35rem;
+    }
+
+    .leaders-grid {
+        gap: 0.2rem 1.25rem;
+    }
+
     .team-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+        gap: 0;
     }
     
     .interns-grid {
@@ -652,6 +786,12 @@ section h3 {
     
     .interns-grid {
         grid-template-columns: 1fr;
+    }
+
+    .leaders-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.15rem;
     }
 }
 
@@ -1067,10 +1207,22 @@ section h3 {
         gap: var(--spacing-medium);
         margin: var(--spacing-small) 0;
         padding: 0;
+        overflow: hidden;
+    }
+
+    .canvas-container .ascii-canvas,
+    #ascii-canvas1 {
+        width: min(100%, 360px) !important;
+        max-width: 100% !important;
+        height: auto !important;
+        overflow: hidden;
+        margin: 0 auto;
+        box-sizing: border-box;
     }
 
     canvas {
         width: 100%;
+        max-width: 360px;
         height: auto;
         margin-left: 0;
     }
