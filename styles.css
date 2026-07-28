@@ -48,11 +48,12 @@
 
 html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
 }
 
 body {
     margin: 0;
-    display: flex;
+    display: block;
     background-color: var(--color-black);
     color: var(--color-white);
     font-family: var(--font-mono);
@@ -74,6 +75,7 @@ nav {
     align-items: center;
     border-right: 1px solid var(--border-medium);
     z-index: 100;
+    box-sizing: border-box;
 }
 
 nav ul {
@@ -111,7 +113,8 @@ nav li.active a {
 
 .main-content {
     margin-left: 200px;
-    width: calc(100% - 200px);
+    width: auto;
+    max-width: none;
     padding: var(--spacing-medium);
     padding-bottom: 4rem;
     display: flex;
