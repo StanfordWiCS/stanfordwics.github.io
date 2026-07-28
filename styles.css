@@ -185,6 +185,16 @@ nav li.active a {
     }
 }
 
+@media (max-width: 768px) {
+    .scroll-reveal,
+    .scroll-reveal-left,
+    .scroll-reveal-right,
+    .scroll-reveal-scale {
+        filter: blur(0.06rem);
+        transition: opacity 0.18s ease-out, transform 0.18s ease-out, filter 0.12s ease-out;
+    }
+}
+
 .canvas-container {
     margin: var(--spacing-medium) 0 var(--spacing-xl) 0;
     display: flex;
