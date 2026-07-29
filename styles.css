@@ -1197,6 +1197,7 @@ section h3 {
         margin-left: 0;
         width: 100%;
         padding: var(--spacing-small);
+        overflow-x: hidden;
     }
 
     .page-section {
